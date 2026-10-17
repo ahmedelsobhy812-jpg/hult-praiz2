@@ -1,0 +1,63 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); margin: 0; line-height: 1.2; text-wrap: balance; }
+p { margin: 0; }
+button { font: inherit; }
+
+/* Mobile-size column, centred on larger screens */
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 430px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-inline: auto;
+  padding-block: 22px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Blurred moving lights behind the glass */
+.bg { position: fixed; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; background: var(--white); }
+.bg i { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.55; }
+.bg i:nth-child(1) { width: 320px; height: 320px; background: var(--pink); top: -90px; left: -80px; }
+.bg i:nth-child(2) { width: 360px; height: 360px; background: var(--purple); bottom: -140px; right: -120px; opacity: 0.4; }
+.bg i:nth-child(3) { width: 220px; height: 220px; background: var(--pink); top: 46%; right: -90px; opacity: 0.32; }
+
+.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  backdrop-filter: blur(22px) saturate(165%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  padding: var(--space-3);
+}
+
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--purple); }
+.brand svg { width: 30px; height: 30px; flex: none; }
+
+/* Progress */
+.progress { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; list-style: none; padding: 0; margin: 0; }
+.progress li { font-size: 11.5px; color: var(--muted); border-top: 4px solid var(--line); border-radius: 4px; padding-top: 6px; line-height: 1.3; }
+.progress li.done { border-color: var(--purple); color: var(--purple); }
+.progress li.on { border-color: var(--pink); color: var(--ink); font-weight: 700; }
+
+.title { font-size: 24px; color: var(--purple); }
+.lead { color: var(--muted); margin-top: 4px; font-size: 14.5px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+footer.note { text-align: center; color: var(--muted); font-size: 12px; margin-top: auto; }

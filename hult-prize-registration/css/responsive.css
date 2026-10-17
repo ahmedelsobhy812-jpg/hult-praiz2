@@ -1,0 +1,13 @@
+/* The layout is already a phone-size column. These rules only adjust edges. */
+@media (max-width: 360px) {
+  .title { font-size: 21px; }
+  .glass { padding: 14px; }
+  .progress li { font-size: 10.5px; }
+  .row { grid-template-columns: 1fr; }
+}
+@media (min-width: 640px) {
+  .app { padding-block: 40px 56px; }
+}
+@media print {
+  .bg { display: none; }
+}

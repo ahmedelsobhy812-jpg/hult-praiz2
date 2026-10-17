@@ -1,0 +1,27 @@
+/* Moving lights: transform only, so weak devices stay smooth */
+@keyframes drift-a { 0% { transform: translate(0, 0); } 50% { transform: translate(60px, 80px); } 100% { transform: translate(0, 0); } }
+@keyframes drift-b { 0% { transform: translate(0, 0); } 50% { transform: translate(-70px, -60px); } 100% { transform: translate(0, 0); } }
+@keyframes drift-c { 0% { transform: translate(0, 0); } 50% { transform: translate(-40px, 70px); } 100% { transform: translate(0, 0); } }
+.bg i:nth-child(1) { animation: drift-a 18s ease-in-out infinite; }
+.bg i:nth-child(2) { animation: drift-b 22s ease-in-out infinite; }
+.bg i:nth-child(3) { animation: drift-c 20s ease-in-out infinite; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.page > * { animation: rise 0.45s var(--ease) both; }
+.page > *:nth-child(2) { animation-delay: 0.06s; }
+.page > *:nth-child(3) { animation-delay: 0.12s; }
+.page > *:nth-child(4) { animation-delay: 0.18s; }
+.page.leaving { opacity: 0; transform: translateY(-10px); transition: opacity 0.25s ease, transform 0.25s ease; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { width: 16px; height: 16px; border: 2px solid rgba(255, 255, 255, 0.4); border-top-color: #fff; border-radius: 50%; display: inline-block; animation: spin 0.7s linear infinite; }
+
+/* Low-power mode: set by app.js on weak devices, or by the user's OS setting */
+.lite .bg i { animation: none; filter: blur(40px); }
+.lite .glass { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(255, 255, 255, 0.85); }
+.lite .page > * { animation: none; }
+@media (prefers-reduced-motion: reduce) {
+  .bg i { animation: none; }
+  .page > * { animation: none; }
+  .page.leaving { transition: none; }
+}
